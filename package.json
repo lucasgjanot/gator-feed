@@ -1,0 +1,33 @@
+{
+  "name": "gator-feed",
+  "version": "1.0.0",
+  "description": "Boot.dev Project - Blog Aggregator in Typescript",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "tsx ./src/index.ts",
+    "generate": "drizzle-kit generate",
+    "migrate": "drizzle-kit migrate"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucasgjanot/gator-feed.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lucasgjanot/gator-feed/issues"
+  },
+  "homepage": "https://github.com/lucasgjanot/gator-feed#readme",
+  "devDependencies": {
+    "@types/node": "^24.9.0",
+    "drizzle-kit": "^0.31.5",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "drizzle-orm": "^0.44.6",
+    "postgres": "^3.4.7"
+  }
+}
