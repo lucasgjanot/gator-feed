@@ -1,7 +1,7 @@
 import { ne } from "drizzle-orm";
 import { readConfig, setUser } from "../config";
 import { createUser, getUser, deleteAllUsers, getUsers } from "../lib/db/queries/users";
-import { fetchFeed, RSSFeed } from "src/rss";
+import { fetchFeed, RSSFeed } from "src/lib/rss";
 
 type CommandHandler = (cmdName: string, ...args: string[]) => Promise<void>;
 
@@ -13,7 +13,7 @@ export async function handlerAgg(cmdName:string, ...args: string[]) {
     throw new Error("Reset command expects no arguments");
   }
   const feed: RSSFeed = await fetchFeed("https://www.wagslane.dev/index.xml");
-  console.log(feed);
+  console.log(JSON.stringify(feed, null, 2));
 }
 
 export async function handlerUsers(cmdName: string, ...args: string[]) {

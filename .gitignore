@@ -48,3 +48,5 @@ coverage/
 # Optional: ignore config file if it stores secrets
 .gatorconfig.json
 
+src/lib/db/migrations
+

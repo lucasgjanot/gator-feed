@@ -1,6 +1,5 @@
-import { foreignKey } from "drizzle-orm/gel-core";
+import { relations } from "drizzle-orm";
 import { pgTable, timestamp, uuid, text } from "drizzle-orm/pg-core";
-import { constrainedMemory } from "process";
 
 export const users = pgTable("users", {
   id: uuid("id").primaryKey().defaultRandom().notNull(),
@@ -19,6 +18,13 @@ export const feeds = pgTable("feeds", {
     .notNull()
     .defaultNow()
     .$onUpdate(() => new Date()),
-  name: text("name").notNull()
-  userId: foreignKey({name: "user_id", columns:users.id}, )
-});
+  name: text("name").notNull(),
+  userId: uuid("user_id").notNull(),
+})
+
+export const feedsRelations = relations(feeds, ({ one }) => ({
+  user: one(users, {
+    fields: [feeds.userId],
+    references: [users.id],
+  }),
+}));
