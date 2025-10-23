@@ -72,13 +72,9 @@ psql
 ```sql
 CREATE DATABASE gator;
 ```
-5. (Optional) Create a new PostgreSQL user (replace username and password with your preferred values):
+5. (Optional) Change password for default user:
 ```sql
-CREATE USER username WITH PASSWORD 'password';
-```
-- Grant all privileges on the gator database to the new user:
-```sql
-GRANT ALL PRIVILEGES ON DATABASE gator TO username;
+ALTER USER postgres PASSWORD 'password';
 ```
 6. Exit the psql shell
 ```bash
