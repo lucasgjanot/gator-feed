@@ -1,52 +1,50 @@
-# Node modules
+# Node modules e lockfiles
 node_modules/
+npm-debug.log*
+yarn-error.log*
 
-# Build outputs
-dist/
-build/
-
-# TypeScript
-*.tsbuildinfo
-
-# Local environment & secrets
+# Arquivos de ambiente (senhas, chaves, variáveis sensíveis)
 .env
 .env.local
-.env.development.local
-.env.test.local
-.env.production.local
+.env.*.local
 
-# OS-specific files
+# Build outputs e caches (se usar)
+dist/
+build/
+.cache/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Ignorar arquivos temporários do sistema
 .DS_Store
 Thumbs.db
 
-# Logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-*.log
+# Ignorar arquivos que não devem ir pro repositório no Drizzle
 
-# Editor folders & configs
+# Mantenha as migrações SQL e meta do Drizzle, pois são essenciais para o histórico
+# Então NÃO ignore nada dentro de:
+# src/lib/db/migrations/
+# src/lib/db/migrations/meta/
+
+# Se tiver lockfiles ou arquivos temporários dentro de migrations/meta, ignore-os:
+src/lib/db/migrations/meta/*.lock
+src/lib/db/migrations/meta/*.tmp
+
+# Se você gerar dumps locais do banco, ignore (não presente na sua estrutura atual)
+# dumps/
+
+# Evite versionar dados do banco em si (mas pelo seu tree, você não tem)
+
+# Arquivos de editor (opcional)
 .vscode/
 .idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
 
-# Postgres data (if running locally in a folder)
-pg_data/
-postgres-data/
-
-# Docker artifacts (if using Docker locally)
-docker-data/
-*.pid
-
-# Temporary files
-tmp/
-temp/
-
-# Test coverage
-coverage/
-
-# Optional: ignore config file if it stores secrets
-.gatorconfig.json
-
-src/lib/db/migrations
-
+# Typescript
+*.tsbuildinfo
