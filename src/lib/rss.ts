@@ -67,5 +67,5 @@ export async function fetchFeed(feedUrl: string) : Promise<RSSFeed> {
         item: rssItems,
         },
     };
-    return rss
+    return rss;
 }

@@ -4,20 +4,19 @@ import { eq } from "drizzle-orm";
 import { firstOrUndefined } from "./utils";
 
 export async function createUser(name: string) {
-  try {
-    const result = await db
+
+    const [result] = await db
       .insert(users)
       .values({ name })
+      .onConflictDoNothing({ target: users.name })
       .returning();
-
-    return firstOrUndefined(result);
-  } catch (err) {
-    if ((err as Error).message.includes('Failed query: insert into "users"')) {
+    
+    if (!result) {
       throw new Error(`User "${name}" already exists`);
     }
-    throw err;
-  }
-}
+
+    return result;
+}                 
 
 export async function getUserByName(name: string) {
   const result = await db.select().from(users).where(eq(users.name, name));
@@ -39,4 +38,4 @@ export async function deleteAllUsers() {
   return firstOrUndefined(result);
 }
 
-export type User = typeof users.$inferSelect
+export type User = typeof users.$inferSelect;
